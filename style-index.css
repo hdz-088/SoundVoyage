@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* Universal Selector */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: #111727;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.welcome h1 {
+  font-family: 'Poppins', Courier;
+  color: #fff;
+  font-size: 50px;
+  font-weight: 500;
+}
+
+.icon-text {
+  display: flex;
+  align-items: center;
+}
+
+.wrapper {
+  --text-color: #36E2Ec;
+  position: relative;
+}
+
+.wrapper a {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+/* Pseudo Class */
+
+.wrapper a:nth-child(1) {
+  -webkit-clip-path: polygon(0 0, 100% 0, 50% 50%);
+  clip-path: polygon(0 0, 100% 0, 50% 50%);
+}
+
+.wrapper a:nth-child(2) {
+  -webkit-clip-path: polygon(100% 0, 100% 100%, 50% 50%);
+  clip-path: polygon(100% 0, 100% 100%, 50% 50%);
+}
+
+.wrapper a:nth-child(3) {
+  -webkit-clip-path: polygon(0 100%, 50% 50%, 100% 100%);
+  clip-path: polygon(0 100%, 50% 50%, 100% 100%);
+}
+
+.wrapper a:nth-child(4) {
+  -webkit-clip-path: polygon(0 0, 50% 50%, 0 100%);
+  clip-path: polygon(0 0, 50% 50%, 0 100%);
+}
+
+.wrapper a:hover {
+  -webkit-clip-path: none;
+  clip-path: none;
+  z-index: 2;
+}
+
+.wrapper a:nth-child(1):hover ~ .fill-text:before {
+  --fill-from: circle(0% at 50% 0%);
+  --fill-to: circle(150% at 0% 50%);
+  animation: fill-text 3s forwards;
+}
+
+.wrapper a:nth-child(2):hover ~ .fill-text:before {
+  --fill-from: circle(0% at 150% 50%);
+  --fill-to: circle(100% at 50% 50%);
+  animation: fill-text 3s forwards;
+}
+
+.wrapper a:nth-child(3):hover ~ .fill-text:before {
+  --fill-from: circle(0% at 50% 100%);
+  --fill-to: circle(150% at 0% 50%);
+  animation: fill-text 3s forwards;
+}
+
+.wrapper a:nth-child(4):hover ~ .fill-text:before {
+  --fill-from: circle(0% at 0% 50%);
+  --fill-to: circle(150% at 0% 50%);
+  animation: fill-text 3s forwards;
+}
+
+/* Animations */
+
+@keyframes fill-text {
+  0% {
+    clip-path: var(--fill-from);
+  }
+  100% {
+    clip-path: var(--fill-to);
+    color: var(--text-color);
+  }
+}
+
+.fill-text {
+  color: transparent;
+  -webkit-text-stroke: 1px var(--text-color);
+  text-stroke: 1px var(--text-color);
+  font-size: 10vw;
+  font-family: "Cardo", serif;
+  position: relative;
+}
+
+.fill-text:before {
+  content: attr(data-text);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
